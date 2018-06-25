@@ -1,3 +1,5 @@
+THIS SCRIPT IS CURRENTLY IN ALPHA!!!! USE WITH CAUTION!!!!
+
 AUTHOR: Gavin Stone https://www.gavsto.com gavin@gavsto.com
 
 CONTRIBUTORS: Ctaylor - http://labtechconsulting.com/
