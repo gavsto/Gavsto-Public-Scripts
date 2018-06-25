@@ -1,5 +1,7 @@
 AUTHOR: Gavin Stone https://www.gavsto.com gavin@gavsto.com
+
 CONTRIBUTORS: Ctaylor - http://labtechconsulting.com/
+
 CONTRIBUTIOS: - Jaykul - https://github.com/Jaykul
 
 USAGE:
@@ -8,7 +10,9 @@ Modify Line 1 to input your own logo: https://www.base64-image.de/
 
 Parameters:
 Paths: Can take multiple paths in either local format or UNC format
+
 TrytorunaslocationAdmin: Performs the treesize as a location administrator
+
 Displayunits: Either B,KB,MB,GB or TB 
 
 Global Variables:
