@@ -1,0 +1,47 @@
+﻿<LabTech_Expansion
+	Version="120.240"
+	Name="LabTech Script Expansion"
+	Type="PackedScript">
+	<PackedScript>
+		<NewDataSet>
+			<Table>
+				<ScriptId>6131</ScriptId>
+				<FolderId>251</FolderId>
+				<ScriptName>Meltdown_Spectre - Enable Local Mitigations</ScriptName>
+				<ScriptNotes></ScriptNotes>
+				<Permission>0,</Permission>
+				<EditPermission>0,</EditPermission>
+				<ComputerScript>1</ComputerScript>
+				<LocationScript>0</LocationScript>
+				<MaintenanceScript>0</MaintenanceScript>
+				<FunctionScript>0</FunctionScript>
+				<LicenseData>H4sIAAAAAAAEAFWPTQrCMBSE94J3yAEakjTpL49sVARREBX3sX2FbNKSJmBvLy0KdTXMDN/AwNk26Ebcm2A0PKYBtQC2KNyi2/XRBfSaA1s5OLwH62cG9d2E6FszJeRkXDR+IjxPSMpFSVQtyzpNyfUCbEXAvfF2CE/0o+3dPP0ffPtjtK2WUqhKCqSd5JwKgQV9laqinGc8y02jCux+/AIAWx/abj4Yt2UP4AAAAA==</LicenseData>
+				<ScriptData>H4sIAAAAAAAEAO1UXWvCMBR9H+w/BN9LG1t1ghSk1g9m57BjQyhINFcJ64ekqWz/fmlNXeyYb8OXPfWec3LDueeGDsItZwcxIoK493cIDU44r4CE/ofgpFTHDGKaI7MWngknCQjgGjeJsw2JNeJ02as8xLLUxQPzkrg4NSkYdW0bO30bg7GzLcvAGHrG5sHpG5bVsTpdsnV6sKtvqRoqz6ZuWl0XCjicpxhuhTKgKsWPi7TCM1pqGtKHxI2h2w1sN7DTwB0tj4wL15J+y6/ivCwVLC2g5M+10hb5nCWsaqlLpcxSCqkg1TBS1aEeyXcKV2JpX4ul+3suLoc9IpSi1vTRX63nC284XwdDbzp78qNwFb74QeQVnEtn5WA8i0MQkSqjEPLyEaCApGQPPAogyfingonsaSHziMZARMFBNspg9vniCJwzCsgUaOlP1qO3xXKETIosZMqHoXzdeFu497+uy3UFJH//sTL7r1aGb7GyGqs/6RfGvUPqWAUAAA==</ScriptData>
+				<ScriptVersion>1</ScriptVersion>
+				<ScriptGuid>3314931e-f300-11e7-b849-005056ac47ef</ScriptGuid>
+				<ScriptFlags>0</ScriptFlags>
+				<Parameters></Parameters>
+			</Table>
+		</NewDataSet>
+		<ScriptFolder>
+			<NewDataSet>
+				<Table>
+					<FolderID>251</FolderID>
+					<ParentID>197</ParentID>
+					<Name>Meltdown_Spectre</Name>
+					<GUID>f58c750b-376c-4419-9bcc-450615faa8bb</GUID>
+				</Table>
+			</NewDataSet>
+		</ScriptFolder>
+		<ScriptFolder>
+			<NewDataSet>
+				<Table>
+					<FolderID>197</FolderID>
+					<ParentID>0</ParentID>
+					<Name>&gt; Snap</Name>
+					<GUID>cbdf845e-726e-402d-b556-968b4fb8f3c7</GUID>
+				</Table>
+			</NewDataSet>
+		</ScriptFolder>
+	</PackedScript>
+</LabTech_Expansion>

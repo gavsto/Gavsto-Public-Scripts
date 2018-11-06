@@ -1,0 +1,47 @@
+﻿<LabTech_Expansion
+	Version="120.240"
+	Name="LabTech Script Expansion"
+	Type="PackedScript">
+	<PackedScript>
+		<NewDataSet>
+			<Table>
+				<ScriptId>6132</ScriptId>
+				<FolderId>251</FolderId>
+				<ScriptName>Meltdown_Spectre - Enable Hyper-V Mitigations for VMs</ScriptName>
+				<ScriptNotes></ScriptNotes>
+				<Permission>0,</Permission>
+				<EditPermission>0,</EditPermission>
+				<ComputerScript>1</ComputerScript>
+				<LocationScript>0</LocationScript>
+				<MaintenanceScript>0</MaintenanceScript>
+				<FunctionScript>0</FunctionScript>
+				<LicenseData>H4sIAAAAAAAEAFWPzQrCMBCE74LvkAdo6EbTX5ZcVARRECve03YLuaQlTcC+vbQo1NMwM3wDg1fTkB3pqL1W+JwGUgLjRfER7KEP1pNTgPHK4ek9GDczpCrtg2v1FLGLtkG7iUEasR2InMlSilJm7H7DeEVg1Tgz+Be50fR2nv4Pvv05mFYRFDnVIHi3B+BCUMbrXBYcIIEk1Y3MqPvxC4Dx+tB28wFXSiRX4AAAAA==</LicenseData>
+				<ScriptData>H4sIAAAAAAAEAO2WXWvCMBSG7wf7D8H7rknaagul4Jw62ZxDRWEURmxSCWgrabqN/frVGl30QtBB2UWvmvd8pOecJzT1J5HgG/lAJAlubwDwdzorRSG7X1KQrbfH2YpmwNw7XokgayaZ0Gz9VbogK82w22xWBPE0CZBvHhuOovo5pwGDnssWEBmxBaGBEGsZC9f2DAgd6DRJZLdYvN+lTChrNvWi1XYTyTaHLtqRVAWolbL38qTUAxpgq+mbmtbbRAGOXUy8qGlYiOJtXZbhWR42oAshbrmujeyFb6pgPRWfTMw60faJdrThpUIGsGhu+1S2TppInuRsaz+slW+UPfM1L1P2S+UZJJQlkpSdF15d6vP7HdmZGeIzM0TnRijYEhBKQePx6XkYTka96bw97oZDHok0S2MZznlC088MvEzDTi5EUaI6J+GMC5mTFf8ua24A8wMMeTJbK38vFZ1Nfk8yRodc8mUZVZxCCcbd/vvkDZjFW9EdLBLj/wLJqSFVDAldDqlZQ6oYEr4cEkI1pYopWZdTwvUHr2pK9hWUrJpSxZScKyj9+V7aa/Xb/wOO8mQbBQwAAA==</ScriptData>
+				<ScriptVersion>1</ScriptVersion>
+				<ScriptGuid>e098eb01-f300-11e7-b849-005056ac47ef</ScriptGuid>
+				<ScriptFlags>0</ScriptFlags>
+				<Parameters></Parameters>
+			</Table>
+		</NewDataSet>
+		<ScriptFolder>
+			<NewDataSet>
+				<Table>
+					<FolderID>251</FolderID>
+					<ParentID>197</ParentID>
+					<Name>Meltdown_Spectre</Name>
+					<GUID>f58c750b-376c-4419-9bcc-450615faa8bb</GUID>
+				</Table>
+			</NewDataSet>
+		</ScriptFolder>
+		<ScriptFolder>
+			<NewDataSet>
+				<Table>
+					<FolderID>197</FolderID>
+					<ParentID>0</ParentID>
+					<Name>&gt; Snap</Name>
+					<GUID>cbdf845e-726e-402d-b556-968b4fb8f3c7</GUID>
+				</Table>
+			</NewDataSet>
+		</ScriptFolder>
+	</PackedScript>
+</LabTech_Expansion>

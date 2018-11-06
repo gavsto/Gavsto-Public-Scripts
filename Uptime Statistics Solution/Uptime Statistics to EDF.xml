@@ -1,0 +1,222 @@
+﻿<LabTech_Expansion
+	Version="110.418"
+	Name="LabTech Script Expansion"
+	Type="PackedScript">
+	<PackedScript>
+		<NewDataSet>
+			<Table>
+				<ScriptId>6284</ScriptId>
+				<FolderId>308</FolderId>
+				<ScriptName>Uptime Statistics to EDF</ScriptName>
+				<ScriptNotes>Author: Gavin Stone - https://www.gavsto.com
+
+If the EDFs don't load or you get an error when opening this script - import the XML twice.</ScriptNotes>
+				<Permission>0,</Permission>
+				<EditPermission>0,</EditPermission>
+				<ComputerScript>1</ComputerScript>
+				<LocationScript>0</LocationScript>
+				<MaintenanceScript>0</MaintenanceScript>
+				<FunctionScript>0</FunctionScript>
+				<LicenseData>H4sIAAAAAAAEAFWPQQrCMBRE94J3yAEakjRW0/LJRkUQBbHiPm2+kE1a0gTs7aVFoa6GmeENDFxci37Ag4lGw2PsUQtgs8I9+X2XfMSgObCFg+O7d2FiUNcmpmDNmJGz8cmEkQiZkZwLRcpqIyspye0KbEFA3QbXxyeGwXV+mv4Pvv0pOat5o4RCtPSlTEOFwB01Dc8p56Io7LYQJbc/fgaALQ+tVx9Rscej4AAAAA==</LicenseData>
+				<ScriptData>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</ScriptData>
+				<ScriptVersion>1</ScriptVersion>
+				<ScriptGuid>0b818eed-f8ab-11e7-ab02-00155d65190d</ScriptGuid>
+				<ScriptFlags>0</ScriptFlags>
+				<Parameters></Parameters>
+			</Table>
+		</NewDataSet>
+		<ExtraDataField>
+			<NewDataSet>
+				<Table>
+					<ID>634</ID>
+					<Form>1</Form>
+					<Name>Period in Days</Name>
+					<Sort>3</Sort>
+					<NoBreak>0</NoBreak>
+					<FType>0</FType>
+					<Section>Uptime Statistics</Section>
+					<UnEditable>0</UnEditable>
+					<Collapsed>0</Collapsed>
+					<Fill>The number of days the statistics were calculated from</Fill>
+					<LtGuid>c1722256-3f75-442c-ace1-de1f106ac953</LtGuid>
+					<IsPassword>false</IsPassword>
+					<IsEncrypted>false</IsEncrypted>
+					<IsHidden>false</IsHidden>
+					<IsRestricted>false</IsRestricted>
+					<ViewPermissions></ViewPermissions>
+					<EditPermissions></EditPermissions>
+				</Table>
+			</NewDataSet>
+		</ExtraDataField>
+		<ExtraDataField>
+			<NewDataSet>
+				<Table>
+					<ID>635</ID>
+					<Form>1</Form>
+					<Name>Number of Crashes in Period</Name>
+					<Sort>0</Sort>
+					<NoBreak>0</NoBreak>
+					<FType>0</FType>
+					<Section>Uptime Statistics</Section>
+					<UnEditable>0</UnEditable>
+					<Collapsed>0</Collapsed>
+					<Fill>Number of Crashes over the specified number of days</Fill>
+					<LtGuid>c068ce9e-535f-4527-836f-028812fef2a5</LtGuid>
+					<IsPassword>false</IsPassword>
+					<IsEncrypted>false</IsEncrypted>
+					<IsHidden>false</IsHidden>
+					<IsRestricted>false</IsRestricted>
+					<ViewPermissions></ViewPermissions>
+					<EditPermissions></EditPermissions>
+				</Table>
+			</NewDataSet>
+		</ExtraDataField>
+		<ExtraDataField>
+			<NewDataSet>
+				<Table>
+					<ID>636</ID>
+					<Form>1</Form>
+					<Name>Number of Reboots in Period</Name>
+					<Sort>0</Sort>
+					<NoBreak>0</NoBreak>
+					<FType>0</FType>
+					<Section>Uptime Statistics</Section>
+					<UnEditable>0</UnEditable>
+					<Collapsed>0</Collapsed>
+					<Fill>Number of Reboots over specified period</Fill>
+					<LtGuid>2322bb96-b25e-4cef-badd-70fe5f571f73</LtGuid>
+					<IsPassword>false</IsPassword>
+					<IsEncrypted>false</IsEncrypted>
+					<IsHidden>false</IsHidden>
+					<IsRestricted>false</IsRestricted>
+					<ViewPermissions></ViewPermissions>
+					<EditPermissions></EditPermissions>
+				</Table>
+			</NewDataSet>
+		</ExtraDataField>
+		<ExtraDataField>
+			<NewDataSet>
+				<Table>
+					<ID>637</ID>
+					<Form>1</Form>
+					<Name>Number of Minutes Down in Period</Name>
+					<Sort>5</Sort>
+					<NoBreak>0</NoBreak>
+					<FType>0</FType>
+					<Section>Uptime Statistics</Section>
+					<UnEditable>0</UnEditable>
+					<Collapsed>0</Collapsed>
+					<Fill>Number of Minutes Down over Specified Period</Fill>
+					<LtGuid>2e3f888e-a39e-4492-8df8-62c8ebe85bd8</LtGuid>
+					<IsPassword>false</IsPassword>
+					<IsEncrypted>false</IsEncrypted>
+					<IsHidden>false</IsHidden>
+					<IsRestricted>false</IsRestricted>
+					<ViewPermissions></ViewPermissions>
+					<EditPermissions></EditPermissions>
+				</Table>
+			</NewDataSet>
+		</ExtraDataField>
+		<ExtraDataField>
+			<NewDataSet>
+				<Table>
+					<ID>638</ID>
+					<Form>1</Form>
+					<Name>Number of Minutes Up in Period</Name>
+					<Sort>4</Sort>
+					<NoBreak>0</NoBreak>
+					<FType>0</FType>
+					<Section>Uptime Statistics</Section>
+					<UnEditable>0</UnEditable>
+					<Collapsed>0</Collapsed>
+					<Fill>Number of Minutes Up over specified period</Fill>
+					<LtGuid>8a800b9f-9bde-4c84-9ea2-f2e68fedba49</LtGuid>
+					<IsPassword>false</IsPassword>
+					<IsEncrypted>false</IsEncrypted>
+					<IsHidden>false</IsHidden>
+					<IsRestricted>false</IsRestricted>
+					<ViewPermissions></ViewPermissions>
+					<EditPermissions></EditPermissions>
+				</Table>
+			</NewDataSet>
+		</ExtraDataField>
+		<ExtraDataField>
+			<NewDataSet>
+				<Table>
+					<ID>639</ID>
+					<Form>1</Form>
+					<Name>Percentage of DownTime in Period</Name>
+					<Sort>2</Sort>
+					<NoBreak>0</NoBreak>
+					<FType>0</FType>
+					<Section>Uptime Statistics</Section>
+					<UnEditable>0</UnEditable>
+					<Collapsed>0</Collapsed>
+					<Fill>Percentage of Downtime over Specified Period</Fill>
+					<LtGuid>8b4e19e6-b4b2-49e8-a2f8-5753b177afb4</LtGuid>
+					<IsPassword>false</IsPassword>
+					<IsEncrypted>false</IsEncrypted>
+					<IsHidden>false</IsHidden>
+					<IsRestricted>false</IsRestricted>
+					<ViewPermissions></ViewPermissions>
+					<EditPermissions></EditPermissions>
+				</Table>
+			</NewDataSet>
+		</ExtraDataField>
+		<ExtraDataField>
+			<NewDataSet>
+				<Table>
+					<ID>640</ID>
+					<Form>1</Form>
+					<Name>Percentage of UpTime in Period</Name>
+					<Sort>1</Sort>
+					<NoBreak>0</NoBreak>
+					<FType>0</FType>
+					<Section>Uptime Statistics</Section>
+					<UnEditable>0</UnEditable>
+					<Collapsed>0</Collapsed>
+					<Fill>Percentage of UpTime over specified period</Fill>
+					<LtGuid>f88440da-93eb-4d15-90bf-5bb3829c0d55</LtGuid>
+					<IsPassword>false</IsPassword>
+					<IsEncrypted>false</IsEncrypted>
+					<IsHidden>false</IsHidden>
+					<IsRestricted>false</IsRestricted>
+					<ViewPermissions></ViewPermissions>
+					<EditPermissions></EditPermissions>
+				</Table>
+			</NewDataSet>
+		</ExtraDataField>
+		<ExtraDataField>
+			<NewDataSet>
+				<Table>
+					<ID>641</ID>
+					<Form>1</Form>
+					<Name>Date of Last Retrieval Of Stats</Name>
+					<Sort>0</Sort>
+					<NoBreak>0</NoBreak>
+					<FType>0</FType>
+					<Section>Uptime Statistics</Section>
+					<UnEditable>0</UnEditable>
+					<Collapsed>0</Collapsed>
+					<Fill>Date of Last Retrieval Of Stats</Fill>
+					<LtGuid>9bd070f5-7ea0-4c5a-9268-cea2da0f77ff</LtGuid>
+					<IsPassword>false</IsPassword>
+					<IsEncrypted>false</IsEncrypted>
+					<IsHidden>false</IsHidden>
+					<IsRestricted>false</IsRestricted>
+					<ViewPermissions></ViewPermissions>
+					<EditPermissions></EditPermissions>
+				</Table>
+			</NewDataSet>
+		</ExtraDataField>
+		<ScriptFolder>
+			<NewDataSet>
+				<Table>
+					<FolderID>308</FolderID>
+					<ParentID>0</ParentID>
+					<Name>Uptime Statistics</Name>
+				</Table>
+			</NewDataSet>
+		</ScriptFolder>
+	</PackedScript>
+</LabTech_Expansion>
