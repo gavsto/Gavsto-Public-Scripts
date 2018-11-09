@@ -1,4 +1,4 @@
-# "%windir%\system32\WindowsPowerShell\v1.0\powershell.exe" "(new-object Net.WebClient).DownloadString('https://bit.ly/2qAOG0V') | iex;
+# "%windir%\system32\WindowsPowerShell\v1.0\powershell.exe" "(new-object Net.WebClient).DownloadString('http://bit.ly/2qAOG0V') | iex;
 
 # Stop the services
 Stop-Service -Name "LTSvcMon" -Force
