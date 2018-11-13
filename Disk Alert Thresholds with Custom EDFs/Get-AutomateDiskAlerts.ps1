@@ -188,7 +188,7 @@ Function Get-DiskAlerts
                 $ErrorToDisplay = "Disk Free Percentage $DiskPercentageFree"
             }
 
-            $ResultArray += "$($Disk.DeviceID) - $TestFinal - Method $ToUse - $ErrorToDisplay"
+            $ResultArray += "$($Disk.DeviceID) - $TestFinal - EDF Threshold Is $ToUse - $ErrorToDisplay"
         }
     }
 
