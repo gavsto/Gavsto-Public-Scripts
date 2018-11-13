@@ -192,9 +192,8 @@ Function Get-DiskAlerts
         }
     }
 
-#Return ($ResultArray) -join ","
-$Test = "Disk C is $diskc"
-Return $Test
+Return ($ResultArray) -join ","
+
 }
 
 # Test Command
