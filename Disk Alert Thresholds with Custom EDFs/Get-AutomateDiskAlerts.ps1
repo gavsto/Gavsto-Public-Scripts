@@ -171,7 +171,7 @@ Function Get-DiskAlerts
 
         $DiskUsedActual = $disk.size - $disk.FreeSpace
         $DiskPercentageFree = [math]::Round(($Disk.FreeSpace / $disk.size) * 100)
-        $DiskFreeGB = $($Disk.FreeSpace / 1024 / 1024 / 1024)
+        $DiskFreeGB = $([math]::Round($Disk.FreeSpace / 1024 / 1024 / 1024))
         $TempLetterVar = $($disk.DeviceID).Replace(":","")
         $ToUse = Get-Variable "disk$TempLetterVar" -ValueOnly
 
@@ -182,7 +182,7 @@ Function Get-DiskAlerts
         }
         else {
             if ($ToUse -match 'gb') {
-                $ErrorToDisplay = "Disk Free GB $DiskFreeGB"
+                $ErrorToDisplay = "Disk Free Space $DiskFreeGB GB"
             }
             else {
                 $ErrorToDisplay = "Disk Free Percentage $DiskPercentageFree"
