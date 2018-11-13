@@ -178,7 +178,7 @@ Function Get-DiskAlerts
         $TestFinal = Get-ThresholdPassOrFail -testmethod $ToUse -diskfreepercent $DiskPercentageFree -diskfreegb $DiskFreeGB
 
         if ($TestFinal -eq 'PASS') {
-            $ResultArray += "$($Disk.DeviceID) - $TestFinal"
+            $ResultArray += "$($Disk.DeviceID) - $TestFinal - $diskc"
         }
         else {
             if ($ToUse -match 'gb') {
