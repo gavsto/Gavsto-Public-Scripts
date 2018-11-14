@@ -49,6 +49,88 @@ function Get-ThresholdPassOrFail {
     
 }
 
+Function Get-DiskHistoryLog
+{
+    param(
+        $IndividualDisk
+    )
+    $FileExists = ""
+
+    $path = "C:\Windows\LTSVC\DiskHistoryLogs"
+    If (!(test-path $path)) {
+        New-Item -ItemType Directory -Force -Path $path
+    }
+
+    $TempLetterVar = $($disk.DeviceID).Replace(":","")
+    $DiskSizeInMegabytes = $([math]::Round($Disk.size / 1024 / 1024))
+
+    $PathToIndividualGrowthLog = "C:\Windows\LTSVC\DiskHistoryLogs\$TempLetterVar-$DiskSizeInMegabytes.txt"
+    $CurrentDateTimeCorrectFormat = Get-Date -Format "MM-dd-yyyy"
+    $FreeSpaceToAdd = $([math]::Round($IndividualDisk.FreeSpace / 1024 / 1024 / 1024))
+
+    If(Test-Path $PathToIndividualGrowthLog )
+    {
+        $FileExists = $true
+    }
+    else {
+        $FileExists = $false
+    }
+
+    $DiskArray = @()
+    if ($FileExists) {
+        Add-Content -Path $PathToIndividualGrowthLog -Value "$CurrentDateTimeCorrectFormat,$FreeSpaceToAdd"
+    }
+
+    if (!$FileExists) {
+        New-Item -Path $PathToIndividualGrowthLog -ItemType File | Out-Null
+    }
+        
+    $DiskHistoryLogContent = Get-Content $PathToIndividualGrowthLog
+
+    $NumberOfEntries = $DiskHistoryLogContent | Measure-Object | Select-Object -ExpandProperty Count
+
+    #We need another in here to actually make some progress
+    if ($NumberOfEntries -gt 30) {
+        foreach ($Line in $DiskHistoryLogContent) {
+            $LineData = $Line -split(',')
+            $Date = $LineData[0]
+            $DateConverted =[datetime]::ParseExact($Date, "MM-dd-yyyy", $null)
+            $FreeInGigabytes = $LineData[1]
+    
+            $myHashtable = @{
+                Date    = $Date
+                FreeInGigabytes = $FreeInGigabytes
+                DaysSince = $(New-TimeSpan -Start $DateConverted -End $(Get-Date).Date).Days
+            }
+            $myObject = New-Object -TypeName PSObject -Property $myHashtable
+            $DiskArray += $myObject
+        }
+    
+        
+        #Get Maximum Days Value and try calculate a date
+        $MaxDayDifference = ($DiskArray  | measure-object -Property DaysSince -maximum).maximum
+        $MinDayDifference = ($DiskArray  | measure-object -Property DaysSince -Minimum).Minimum
+        $TotalDayDifference = ($MaxDayDifference-$MinDayDifference)
+        $FreeSpaceAtOldestDate = $DiskArray | Where-Object {$_.DaysSince -eq $MaxDayDifference} | Select-Object -first 1 -ExpandProperty FreeInGigabytes
+        $FreeSpaceAtNewestDate = $DiskArray | Where-Object {$_.DaysSince -eq $MinDayDifference} | Select-Object -first 1 -ExpandProperty FreeInGigabytes
+        $TotalFreeDifference = ($FreeSpaceAtOldestDate-$FreeSpaceAtNewestDate)
+        $DailyRateOfChangeInGB = $TotalFreeDifference / $TotalDayDifference
+        $NumberOfDaysUntilPancaked = [math]::Round($FreeInGigabytes / $DailyRateOfChangeInGB)
+    
+        if (($NumberOfDaysUntilPancaked -lt 1) -or ($NumberOfDaysUntilPancaked -eq [System.Double]::PositiveInfinity) -or ($NumberOfDaysUntilPancaked -eq 'NaN') ) {
+            Write-Output "Negative or No Growth"
+        }
+        else {
+            $DateOfPancake = (Get-Date).AddDays($NumberOfDaysUntilPancaked)
+            Write-Output "Date Full: $DateOfPancake"
+        }
+    }
+    else {
+        Write-Output "Not Enough Data Points Yet"
+    }
+
+}
+
 Function Get-DiskAlerts
 {
     param(
@@ -177,6 +259,8 @@ Function Get-DiskAlerts
 
         $TestFinal = Get-ThresholdPassOrFail -testmethod $ToUse -diskfreepercent $DiskPercentageFree -diskfreegb $DiskFreeGB
 
+        Get-DiskHistoryLog -IndividualDisk $disk
+
         if ($TestFinal -eq 'PASS') {
             $ResultArray += "$($Disk.DeviceID) - $TestFinal"
         }
@@ -197,4 +281,4 @@ Return ($ResultArray) -join ","
 }
 
 # Test Command
-# Get-DiskAlerts -diska "a" -diskb "b" -diskc "100 GB Free" -diskd "d" -diske "e" -diskf "f" -diskg "g" -diskh "h" -diski "i" -diskj "j" -diskk "k" -diskl "l" -diskm "m" -diskn "n" -disko "o" -diskp "p" -diskq "q" -diskr "r" -disks "s" -diskt "t" -disku "u" -diskv "v" -diskw "w" -diskx "x" -disky "y" -diskz "z"
+Get-DiskAlerts -diska "a" -diskb "b" -diskc "100 GB Free" -diskd "d" -diske "e" -diskf "f" -diskg "g" -diskh "h" -diski "i" -diskj "j" -diskk "k" -diskl "l" -diskm "m" -diskn "n" -disko "o" -diskp "p" -diskq "q" -diskr "r" -disks "s" -diskt "t" -disku "u" -diskv "v" -diskw "w" -diskx "x" -disky "y" -diskz "z"
