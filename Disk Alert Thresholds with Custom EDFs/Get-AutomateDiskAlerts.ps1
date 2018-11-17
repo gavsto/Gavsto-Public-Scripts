@@ -13,6 +13,10 @@ function Get-ThresholdPassOrFail {
 
     switch ($testmethod) {
         'NA' {$Result = "PASS"}
+        '1 Percent Free' { If($diskfreepercent -le 5){$Result = "FAIL"}Else{$Result = "PASS"}}
+        '2 Percent Free' { If($diskfreepercent -le 5){$Result = "FAIL"}Else{$Result = "PASS"}}
+        '3 Percent Free' { If($diskfreepercent -le 5){$Result = "FAIL"}Else{$Result = "PASS"}}
+        '4 Percent Free' { If($diskfreepercent -le 5){$Result = "FAIL"}Else{$Result = "PASS"}}
         '5 Percent Free' { If($diskfreepercent -le 5){$Result = "FAIL"}Else{$Result = "PASS"}}
         '10 Percent Free' { If($diskfreepercent -le 10){$Result = "FAIL"}Else{$Result = "PASS"}}
         '15 Percent Free' { If($diskfreepercent -le 15){$Result = "FAIL"}Else{$Result = "PASS"}}
@@ -83,6 +87,7 @@ Function Get-DiskHistoryLog
 
     if (!$FileExists) {
         New-Item -Path $PathToIndividualGrowthLog -ItemType File | Out-Null
+        Add-Content -Path $PathToIndividualGrowthLog -Value "$CurrentDateTimeCorrectFormat,$FreeSpaceToAdd"
     }
         
     $DiskHistoryLogContent = Get-Content $PathToIndividualGrowthLog
@@ -236,10 +241,50 @@ Function Get-DiskAlerts
 
     [Parameter(Mandatory=$true,ValueFromPipelineByPropertyName=$true)]
     [AllowEmptyString()]
-    [string]$diskz
+    [string]$diskz,
+
+    [Parameter(Mandatory=$false,ValueFromPipelineByPropertyName=$true)]
+    [AllowEmptyString()]
+    [string]$IgnoreRemovable,
+
+    [Parameter(Mandatory=$false,ValueFromPipelineByPropertyName=$true)]
+    [AllowEmptyString()]
+    [string]$IgnoreNetworkDrive,
+
+    [Parameter(Mandatory=$false,ValueFromPipelineByPropertyName=$true)]
+    [AllowEmptyString()]
+    [string]$IgnoreCD,
+
+    [Parameter(Mandatory=$false,ValueFromPipelineByPropertyName=$true)]
+    [AllowEmptyString()]
+    [string]$IgnoreFixedDisks
     )
 
-    $DisksWMI = get-WmiObject win32_logicaldisk
+    # Give us a way to exclude certain drive types
+    $DrivesToMonitorArray = @()
+
+    if ($IgnoreRemovable -eq "Yes") {
+        $DrivesToMonitorArray += 2
+    }
+
+    if ($IgnoreNetworkDrive -eq "Yes") {
+        $DrivesToMonitorArray += 4
+    }
+
+    if ($IgnoreCD -eq "Yes") {
+        $DrivesToMonitorArray += 5
+    }
+
+    if ($IgnoreFixedDisks -eq "Yes") {
+        $DrivesToMonitorArray += 3
+    }
+
+    $DisksWMI = get-WmiObject win32_logicaldisk | Where-Object {$_.DriveType -notin $DrivesToMonitorArray}
+
+    if (($DisksWMI | Measure-Object | Select-Object -ExpandProperty Count) -eq 0) {
+        Write-Output "No disks found to monitor"
+    }
+
     $ResultArray = @()
 
     foreach ($disk in $diskswmi)
