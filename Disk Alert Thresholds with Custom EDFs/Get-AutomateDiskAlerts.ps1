@@ -279,7 +279,7 @@ Function Get-DiskAlerts
         $DrivesToMonitorArray += 3
     }
 
-    $DisksWMI = get-WmiObject win32_logicaldisk | Where-Object {$_.DriveType -notin $DrivesToMonitorArray}
+    $DisksWMI = get-WmiObject win32_logicaldisk | Where-Object {$DrivesToMonitorArray -notcontains $_.DriveType}
 
     if (($DisksWMI | Measure-Object | Select-Object -ExpandProperty Count) -eq 0) {
         Write-Output "No disks found to monitor"
@@ -326,4 +326,4 @@ Return ($ResultArray) -join ","
 }
 
 # Test Command
-Get-DiskAlerts -diska "a" -diskb "b" -diskc "100 GB Free" -diskd "d" -diske "e" -diskf "f" -diskg "g" -diskh "h" -diski "i" -diskj "j" -diskk "k" -diskl "l" -diskm "m" -diskn "n" -disko "o" -diskp "p" -diskq "q" -diskr "r" -disks "s" -diskt "t" -disku "u" -diskv "v" -diskw "w" -diskx "x" -disky "y" -diskz "z"
+Get-DiskAlerts -ignorefixeddisks "yes" -IgnoreRemovable "yes" -diska "a" -diskb "b" -diskc "100 GB Free" -diskd "d" -diske "e" -diskf "f" -diskg "g" -diskh "h" -diski "i" -diskj "j" -diskk "k" -diskl "l" -diskm "m" -diskn "n" -disko "o" -diskp "p" -diskq "q" -diskr "r" -disks "s" -diskt "t" -disku "u" -diskv "v" -diskw "w" -diskx "x" -disky "y" -diskz "z"
