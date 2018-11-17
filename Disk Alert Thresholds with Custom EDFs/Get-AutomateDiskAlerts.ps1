@@ -62,7 +62,7 @@ Function Get-DiskHistoryLog
 
     $path = "C:\Windows\LTSVC\DiskHistoryLogs"
     If (!(test-path $path)) {
-        New-Item -ItemType Directory -Force -Path $path
+        New-Item -ItemType Directory -Force -Path $path | Out-Null
     }
 
     $TempLetterVar = $($disk.DeviceID).Replace(":","")
@@ -297,7 +297,14 @@ Function Get-DiskAlerts
         $ErrorToDisplay = ""
 
         $DiskUsedActual = $disk.size - $disk.FreeSpace
-        $DiskPercentageFree = [math]::Round(($Disk.FreeSpace / $disk.size) * 100)
+
+        if ($Disk.FreeSpace -gt 0) {
+            $DiskPercentageFree = [math]::Round(($Disk.FreeSpace / $disk.size) * 100)
+        }
+        else {
+            $DiskPercentageFree = 0.1
+        }
+
         $DiskFreeGB = $([math]::Round($Disk.FreeSpace / 1024 / 1024 / 1024))
         $TempLetterVar = $($disk.DeviceID).Replace(":","")
         $ToUse = Get-Variable "disk$TempLetterVar" -ValueOnly
@@ -326,4 +333,4 @@ Return ($ResultArray) -join ","
 }
 
 # Test Command
-Get-DiskAlerts -ignorefixeddisks "yes" -IgnoreRemovable "yes" -diska "a" -diskb "b" -diskc "100 GB Free" -diskd "d" -diske "e" -diskf "f" -diskg "g" -diskh "h" -diski "i" -diskj "j" -diskk "k" -diskl "l" -diskm "m" -diskn "n" -disko "o" -diskp "p" -diskq "q" -diskr "r" -disks "s" -diskt "t" -disku "u" -diskv "v" -diskw "w" -diskx "x" -disky "y" -diskz "z"
+Get-DiskAlerts -diska "a" -diskb "b" -diskc "100 GB Free" -diskd "d" -diske "e" -diskf "f" -diskg "g" -diskh "h" -diski "i" -diskj "j" -diskk "k" -diskl "l" -diskm "m" -diskn "n" -disko "o" -diskp "p" -diskq "q" -diskr "r" -disks "s" -diskt "t" -disku "u" -diskv "v" -diskw "w" -diskx "x" -disky "y" -diskz "z"
