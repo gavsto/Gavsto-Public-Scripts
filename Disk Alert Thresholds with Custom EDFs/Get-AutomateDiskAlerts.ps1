@@ -126,8 +126,14 @@ Function Get-DiskHistoryLog
             Write-Output "Negative or No Growth"
         }
         else {
-            $DateOfPancake = (Get-Date).AddDays($NumberOfDaysUntilPancaked)
-            Write-Output "Date Full: $DateOfPancake"
+            try {
+                $DateOfPancake = (Get-Date).AddDays($NumberOfDaysUntilPancaked)
+                Write-Output "Date Full: $DateOfPancake"
+            }
+            catch {
+                Write-Output "Unknown date when full"
+            }
+            
         }
     }
     else {
