@@ -355,6 +355,7 @@ Function Get-DiskAlerts
         $DiskFreeGB = $([math]::Round($Disk.FreeSpace / 1024 / 1024 / 1024))
         $TempLetterVar = $($disk.DeviceID).Replace(":","")
         $ToUse = Get-Variable "disk$TempLetterVar" -ValueOnly
+        Write-Output "For $TempLetterVar the variable name is $(Get-Variable "disk$TempLetterVar" -ValueOnly)"
 
         $TestFinal = Get-ThresholdPassOrFail -testmethod $ToUse -diskfreepercent $DiskPercentageFree -diskfreegb $DiskFreeGB
 
