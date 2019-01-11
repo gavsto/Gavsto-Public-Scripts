@@ -384,4 +384,4 @@ Function Get-DiskAlerts
 }
 
 # Test Command
-Get-DiskAlerts -diska "a" -diskb "b" -diskc "100 GB Free" -diskd "d" -diske "e" -diskf "f" -diskg "g" -diskh "h" -diski "i" -diskj "j" -diskk "k" -diskl "l" -diskm "m" -diskn "n" -disko "o" -diskp "p" -diskq "q" -diskr "r" -disks "s" -diskt "t" -disku "u" -diskv "v" -diskw "w" -diskx "x" -disky "y" -diskz "z"
+#Get-DiskAlerts -diska "a" -diskb "b" -diskc "100 GB Free" -diskd "d" -diske "e" -diskf "f" -diskg "g" -diskh "h" -diski "i" -diskj "j" -diskk "k" -diskl "l" -diskm "m" -diskn "n" -disko "o" -diskp "p" -diskq "q" -diskr "r" -disks "s" -diskt "t" -disku "u" -diskv "v" -diskw "w" -diskx "x" -disky "y" -diskz "z"
