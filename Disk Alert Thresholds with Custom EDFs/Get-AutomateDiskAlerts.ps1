@@ -96,20 +96,60 @@ Function Get-DiskHistoryLog
 
     #We need another in here to actually make some progress
     if ($NumberOfEntries -gt 30) {
-        foreach ($Line in $DiskHistoryLogContent) {
-            $LineData = $Line -split(',')
-            $Date = $LineData[0]
-            $DateConverted =[datetime]::ParseExact($Date, "MM-dd-yyyy", $null)
-            $FreeInGigabytes = $LineData[1]
-    
-            $myHashtable = @{
-                Date    = $Date
-                FreeInGigabytes = $FreeInGigabytes
-                DaysSince = $(New-TimeSpan -Start $DateConverted -End $(Get-Date).Date).Days
+        if ($NumberOfEntries -lt 2100) {
+            foreach ($Line in $DiskHistoryLogContent) {
+                $LineData = $Line -split(',')
+                $Date = $LineData[0]
+                $DateConverted =[datetime]::ParseExact($Date, "MM-dd-yyyy", $null)
+                $FreeInGigabytes = $LineData[1]
+        
+                $myHashtable = @{
+                    Date    = $Date
+                    FreeInGigabytes = $FreeInGigabytes
+                    DaysSince = $(New-TimeSpan -Start $DateConverted -End $(Get-Date).Date).Days
+                }
+                $myObject = New-Object -TypeName PSObject -Property $myHashtable
+                $DiskArray += $myObject
             }
-            $myObject = New-Object -TypeName PSObject -Property $myHashtable
-            $DiskArray += $myObject
         }
+        else {
+                $FirstLine = $DiskHistoryLogContent | Select -First 1
+                $LastLine = $DiskHistoryLogContent | Select -Last 1
+                
+                $FirstLineData = $FirstLine -split(',')
+                $LastLineData = $LastLine -split(',')
+
+                $FirstDate = $FirstLineData[0]
+                $LastDate = $LastLineData[0]
+
+                $FirstDateConverted =[datetime]::ParseExact($FirstDate, "MM-dd-yyyy", $null)
+                $LastDateConverted =[datetime]::ParseExact($LastDate, "MM-dd-yyyy", $null)
+
+                $FirstFreeInGigabytes = $FirstLineData[1]
+                $LastFreeInGigabytes = $LastLineData[1]
+        
+                $myHashtable = @{
+                    Date    = $FirstDate
+                    FreeInGigabytes = $FirstFreeInGigabytes
+                    DaysSince = $(New-TimeSpan -Start $FirstDateConverted -End $(Get-Date).Date).Days
+                }
+                $myObject = New-Object -TypeName PSObject -Property $myHashtable
+                $DiskArray += $myObject
+
+                $myObject = ""
+                $myHashtable = ""
+
+                $myHashtable = @{
+                    Date    = $LastDate
+                    FreeInGigabytes = $LastFreeInGigabytes
+                    DaysSince = $(New-TimeSpan -Start $LastDateConverted -End $(Get-Date).Date).Days
+                }
+                $FreeInGigabytes = $LastFreeInGigabytes
+                
+                $myObject = New-Object -TypeName PSObject -Property $myHashtable
+                $DiskArray += $myObject
+        }
+
     
         
         #Get Maximum Days Value and try calculate a date
@@ -123,21 +163,21 @@ Function Get-DiskHistoryLog
         $NumberOfDaysUntilPancaked = [math]::Round($FreeInGigabytes / $DailyRateOfChangeInGB)
     
         if (($NumberOfDaysUntilPancaked -lt 1) -or ($NumberOfDaysUntilPancaked -eq [System.Double]::PositiveInfinity) -or ($NumberOfDaysUntilPancaked -eq 'NaN') ) {
-            Write-Output "Negative or No Growth"
+            Return "$($TempLetterVar): Negative or No Growth"
         }
         else {
             try {
                 $DateOfPancake = (Get-Date).AddDays($NumberOfDaysUntilPancaked)
-                Write-Output "Date Full: $DateOfPancake"
+                Return "$($TempLetterVar): Date Full: $DateOfPancake"
             }
             catch {
-                Write-Output "Unknown date when full"
+                Return "$($TempLetterVar): Unknown date when full"
             }
             
         }
     }
     else {
-        Write-Output "Not Enough Data Points Yet"
+        Return "$($TempLetterVar): Not Enough Data Points Yet"
     }
 
 }
@@ -292,6 +332,7 @@ Function Get-DiskAlerts
     }
 
     $ResultArray = @()
+    $HistoryLogArray = @()
 
     foreach ($disk in $diskswmi)
     {
@@ -317,7 +358,8 @@ Function Get-DiskAlerts
 
         $TestFinal = Get-ThresholdPassOrFail -testmethod $ToUse -diskfreepercent $DiskPercentageFree -diskfreegb $DiskFreeGB
 
-        Get-DiskHistoryLog -IndividualDisk $disk
+        $HistoryLogReturn = Get-DiskHistoryLog -IndividualDisk $disk
+        $HistoryLogArray += $HistoryLogReturn
 
         if ($TestFinal -eq 'PASS') {
             $ResultArray += "$($Disk.DeviceID) - $TestFinal"
@@ -334,7 +376,10 @@ Function Get-DiskAlerts
         }
     }
 
-Return ($ResultArray) -join ","
+    #Build Final Result
+    $ResultArrayFinal = ($ResultArray) -join ","
+    $HistoryLogFinal = ($HistoryLogArray) -join ","
+    Return "$ResultArrayFinal ||| $HistoryLogFinal"
 
 }
 
