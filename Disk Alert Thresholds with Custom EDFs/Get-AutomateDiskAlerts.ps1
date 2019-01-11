@@ -333,6 +333,7 @@ Function Get-DiskAlerts
 
     $ResultArray = @()
     $HistoryLogArray = @()
+    $DebugArray = @()
 
     foreach ($disk in $diskswmi)
     {
@@ -355,7 +356,7 @@ Function Get-DiskAlerts
         $DiskFreeGB = $([math]::Round($Disk.FreeSpace / 1024 / 1024 / 1024))
         $TempLetterVar = $($disk.DeviceID).Replace(":","")
         $ToUse = Get-Variable "disk$TempLetterVar" -ValueOnly
-        Write-Output "For $TempLetterVar the variable name is $(Get-Variable "disk$TempLetterVar" -ValueOnly)"
+        $DebugArray += "For $TempLetterVar the variable name is $(Get-Variable "disk$TempLetterVar" -ValueOnly)"
 
         $TestFinal = Get-ThresholdPassOrFail -testmethod $ToUse -diskfreepercent $DiskPercentageFree -diskfreegb $DiskFreeGB
 
@@ -380,7 +381,8 @@ Function Get-DiskAlerts
     #Build Final Result
     $ResultArrayFinal = ($ResultArray) -join ","
     $HistoryLogFinal = ($HistoryLogArray) -join ","
-    Return "$ResultArrayFinal ||| $HistoryLogFinal"
+    $DebugArrayFinal = ($DebugArray) -join ","
+    Return "$ResultArrayFinal ||| $HistoryLogFinal ||| $DebugArrayFinal"
 
 }
 
