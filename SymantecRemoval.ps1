@@ -1,5 +1,5 @@
 $wshell = New-Object -ComObject wscript.shell
-Start-Process -FilePath "C:\SEPprep\SepPrep64.exe"
+Start-Process -FilePath "C:\Windows\ltsvc\SymantecRemoval\SEPprep64.exe"
 Sleep 10
 $wshell.AppActivate('Symantec Endpoint Protection Cloud')
 #$wshell.AppActivate('Untitled - notepad')
