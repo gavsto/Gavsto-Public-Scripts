@@ -9,7 +9,7 @@ Sleep 0.5
 $wshell.SendKeys('{TAB}')
 Sleep 0.5
 $wshell.SendKeys('{ENTER}')
-Sleep 60
+Sleep 240
 $wshell.AppActivate('Symantec Endpoint Protection Cloud')
 Sleep 0.5
 $wshell.SendKeys('{TAB}')
