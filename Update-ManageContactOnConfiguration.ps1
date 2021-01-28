@@ -9,7 +9,7 @@
   A single line per Automate PC as to whether it was matched or not
 .NOTES
   Version:        1.0
-  Author:         Gavin Stone
+  Author:         Gavin Stone (gavsto.com)
   Creation Date:  28th January 2021
   Purpose/Change: Initial script development
 #>
