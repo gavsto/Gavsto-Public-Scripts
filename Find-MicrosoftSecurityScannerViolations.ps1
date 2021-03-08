@@ -57,7 +57,7 @@ function Start-MSERTScanner {
         $proc | Wait-Process -Timeout 1800 -ErrorAction Stop
     }
     catch [TimeoutException] {
-        Write-Error -Message "WARNING: Microsoft security scanner took longer than 15 minutes so script terminated: $($_.Exception.Message)" -Exception $_.Exception
+        Write-Error -Message "WARNING: Microsoft security scanner took longer than 30 minutes so script terminated: $($_.Exception.Message)" -Exception $_.Exception
         throw
     }
     Write-Debug "MSERT Scanner has finished"
