@@ -54,7 +54,7 @@ function Start-MSERTScanner {
     $Arguments = "/Q /N"
     $proc = Start-Process $EXEPath $Arguments -PassThru
     try {
-        $proc | Wait-Process -Timeout 900 -ErrorAction Stop
+        $proc | Wait-Process -Timeout 1800 -ErrorAction Stop
     }
     catch [TimeoutException] {
         Write-Error -Message "WARNING: Microsoft security scanner took longer than 15 minutes so script terminated: $($_.Exception.Message)" -Exception $_.Exception
